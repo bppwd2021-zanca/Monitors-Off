@@ -12,6 +12,7 @@ public class ProgressBar{
     }public void draw(Graphics pen){
         pen.setColor(Color.gray);
         pen.fillRect(x,y,width,height);
+        //
         float[] colorValues=new float[3];
         Color.RGBtoHSB((int)(255*((100-progress)/100)),(int)(255*((progress)/100)),0,colorValues);
         pen.setColor(Color.getHSBColor(colorValues[0],colorValues[1],colorValues[2]));
