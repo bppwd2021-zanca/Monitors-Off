@@ -38,7 +38,9 @@ public class MyGame extends Game  {
         }catch(Exception ignored){}
     }
 
-
+/*
+* Funny Comment no I mean Really
+* */
 
     public void update() {
 
