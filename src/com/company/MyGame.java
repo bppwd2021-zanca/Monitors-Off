@@ -21,10 +21,12 @@ public class MyGame extends Game  {
 
     public static final int SCREEN_HEIGHT = 800;
 
+    public ProgressBar progressBar;
+
 
 
     public MyGame() {
-
+        progressBar=new ProgressBar(200,30,400,20,100);
     }
 
 
@@ -36,7 +38,9 @@ public class MyGame extends Game  {
 
 
     public void draw(Graphics pen) {
-
+        pen.setColor(Color.black);
+        pen.fillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
+        progressBar.update(pen,-0.1);
     }
 
 
