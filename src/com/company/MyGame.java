@@ -1,4 +1,5 @@
 package com.company;
+import javax.imageio.ImageIO;
 import java.awt.Color;
 
 import java.awt.Graphics;
@@ -6,9 +7,8 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 import java.awt.event.MouseEvent;
-
-
-
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 
 public class MyGame extends Game  {
@@ -25,15 +25,17 @@ public class MyGame extends Game  {
 
     public Monitor monitor;
 
-/**
- * Hee Hee
- * I like pooping
- * Hoo Hoo
- */
+    public BufferedImage desk,guy;
+
+
 
     public MyGame() {
         progressBar=new ProgressBar(200,30,400,20,100);
-        monitor=new Monitor(300,300,270,180,false);
+        monitor=new Monitor(430,250,270,180,false);
+        try{
+            desk=ImageIO.read(new File("img/desk.png"));
+            guy=ImageIO.read(new File("img/guy.png"));
+        }catch(Exception ignored){}
     }
 
 
@@ -48,9 +50,11 @@ public class MyGame extends Game  {
         pen.setColor(Color.black);
         pen.fillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
         progressBar.update(pen,monitor);
+        pen.drawImage(desk,365,415,400,300,null);
         try{
             monitor.draw(pen);
         }catch(Exception ignored){}
+        pen.drawImage(guy,440,230,250,500,null);
     }
 
 
