@@ -25,9 +25,11 @@ public class MyGame extends Game  {
 
     public BufferedImage desk,guy,guy2;
 
+    private TypingMinigame typeGame;
 
 
     public MyGame() {
+        typeGame = new TypingMinigame();
         progressBar=new ProgressBar(365,30,400,20,100);
         monitor=new Monitor(430,250,270,180,false);
         try{
@@ -69,6 +71,10 @@ public class MyGame extends Game  {
 
     public void keyPressed(KeyEvent ke) {
 
+        if(ke.getKeyCode()==KeyEvent.VK_BACK_SPACE)
+            typeGame.backspace();
+        else
+            typeGame.getChar(ke.getKeyChar());
     }
 
 
