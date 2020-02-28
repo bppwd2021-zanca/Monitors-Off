@@ -96,5 +96,11 @@ public abstract class Game implements KeyListener, MouseListener
         }
 
     }
+    public int getWindowX(){
+        return frame.getLocation().x;
+    }
+    public int getWindowY(){
+        return frame.getLocation().y;
+    }
 
 }

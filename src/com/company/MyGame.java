@@ -1,8 +1,6 @@
 package com.company;
 import javax.imageio.ImageIO;
-import java.awt.Color;
-
-import java.awt.Graphics;
+import java.awt.*;
 
 import java.awt.event.KeyEvent;
 
@@ -25,16 +23,17 @@ public class MyGame extends Game  {
 
     public Monitor monitor;
 
-    public BufferedImage desk,guy;
+    public BufferedImage desk,guy,guy2;
 
 
 
     public MyGame() {
-        progressBar=new ProgressBar(200,30,400,20,100);
+        progressBar=new ProgressBar(365,30,400,20,30);
         monitor=new Monitor(430,250,270,180,false);
         try{
             desk=ImageIO.read(new File("img/desk.png"));
             guy=ImageIO.read(new File("img/guy.png"));
+            guy2=ImageIO.read(new File("img/guy2.png"));
         }catch(Exception ignored){}
     }
 
@@ -47,12 +46,15 @@ public class MyGame extends Game  {
     public void draw(Graphics pen) {
         pen.setColor(Color.black);
         pen.fillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
-        progressBar.update(pen,monitor);
         pen.drawImage(desk,365,415,400,300,null);
         try{
             monitor.draw(pen);
         }catch(Exception ignored){}
-        pen.drawImage(guy,440,230,250,500,null);
+        if(monitor.getState())
+            pen.drawImage(guy,440,230,250,500,null);
+        else
+            pen.drawImage(guy2,440,230,250,500,null);
+        progressBar.update(pen,monitor,SCREEN_WIDTH,SCREEN_HEIGHT);
     }
 
 
@@ -66,8 +68,7 @@ public class MyGame extends Game  {
     @Override
 
     public void keyPressed(KeyEvent ke) {
-        if(ke.getKeyCode()==KeyEvent.VK_SPACE)
-            monitor.changeStates();
+
     }
 
 
@@ -87,7 +88,12 @@ public class MyGame extends Game  {
     @Override
 
     public void mousePressed(MouseEvent me) {
-
+        double mouseX= MouseInfo.getPointerInfo().getLocation().getX();
+        double mouseY=MouseInfo.getPointerInfo().getLocation().getY();
+        int frameX=getWindowX();
+        int frameY=getWindowY();
+        if(mouseX>=frameX+681 && mouseX<=frameX+698 && mouseY>=frameY+431 && mouseY<=frameY+443)
+            monitor.changeStates();
     }
 
 

@@ -3,12 +3,14 @@ import java.awt.*;
 public class ProgressBar{
     private int x,y,width,height;
     private double progress;
+    private int showScreen;
     public ProgressBar(int x,int y,int width,int height,double progress){
         this.x=x;
         this.y=y;
         this.width=width;
         this.height=height;
         this.progress=progress;
+        showScreen=0;
     }public void draw(Graphics pen){
         pen.setColor(Color.gray);
         pen.fillRect(x,y,width,height);
@@ -22,11 +24,20 @@ public class ProgressBar{
             progress+=num;
         if(progress<=0);
             //color=Color.red;
-    }public void update(Graphics pen,Monitor monitor){
+    }public void update(Graphics pen,Monitor monitor,int width,int height){
         if(monitor.getState())
             progress(0.1);
         else
             progress(-0.1);
         draw(pen);
+        if(progress<=0 && showScreen<=200){
+            showScreen++;
+            pen.setColor(Color.black);
+            pen.fillRect(0,0,width,height);
+            pen.setColor(Color.white);
+            pen.setFont(new Font("Silom",Font.BOLD,100));
+            pen.drawString("Game Over",300,300);
+        }if(showScreen>=200)
+            System.exit(0);
     }
 }
