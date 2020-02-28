@@ -25,7 +25,11 @@ public class MyGame extends Game  {
 
     public Monitor monitor;
 
-
+/**
+ * Hee Hee
+ * I like pooping
+ * Hoo Hoo
+ */
 
     public MyGame() {
         progressBar=new ProgressBar(200,30,400,20,100);
