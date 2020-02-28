@@ -28,7 +28,7 @@ public class MyGame extends Game  {
 
 
     public MyGame() {
-        progressBar=new ProgressBar(365,30,400,20,30);
+        progressBar=new ProgressBar(365,30,400,20,100);
         monitor=new Monitor(430,250,270,180,false);
         try{
             desk=ImageIO.read(new File("img/desk.png"));

@@ -16,7 +16,10 @@ public class ProgressBar{
         pen.fillRect(x,y,width,height);
         //
         float[] colorValues=new float[3];
-        Color.RGBtoHSB((int)(255*((100-progress)/100)),(int)(255*((progress)/100)),0,colorValues);
+        if(progress>50)
+            Color.RGBtoHSB((int)(255*((100-progress)/100)),255,0,colorValues);
+        else if(progress<=50)
+            Color.RGBtoHSB(255,(int)(255*((progress)/100)),0,colorValues);
         pen.setColor(Color.getHSBColor(colorValues[0],colorValues[1],colorValues[2]));
         pen.fillRect(x+15,y+15,(int)((width-30)*(progress/100)),height-30);
     }public void progress(double num){
