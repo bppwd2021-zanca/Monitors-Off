@@ -26,10 +26,12 @@ public class MyGame extends Game  {
     public Monitor monitor;
 
     public BufferedImage desk,guy;
+    public TypingMinigame typeGame;
 
 
 
     public MyGame() {
+        typeGame = new TypingMinigame();
         progressBar=new ProgressBar(200,30,400,20,100);
         monitor=new Monitor(430,250,270,180,false);
         try{
@@ -53,6 +55,8 @@ public class MyGame extends Game  {
             monitor.draw(pen);
         }catch(Exception ignored){}
         pen.drawImage(guy,440,230,250,500,null);
+        typeGame.draw(pen);
+
     }
 
 
@@ -66,6 +70,7 @@ public class MyGame extends Game  {
     @Override
 
     public void keyPressed(KeyEvent ke) {
+        typeGame.getChar(ke.getKeyChar());
         if(ke.getKeyCode()==KeyEvent.VK_SPACE)
             monitor.changeStates();
     }
@@ -107,10 +112,6 @@ public class MyGame extends Game  {
     @Override
 
     public void mouseExited(MouseEvent me) {}
-    /*
-    * God will perish by my hands
-    *
-    * */
     //Launches the Game
 
     public static void main(String[] args) { new MyGame().start(TITLE, SCREEN_WIDTH,SCREEN_HEIGHT); }
