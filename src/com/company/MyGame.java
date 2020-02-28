@@ -38,10 +38,6 @@ public class MyGame extends Game  {
         }catch(Exception ignored){}
     }
 
-/*
-* Funny Comment no I mean Really
-* */
-
     public void update() {
 
     }
@@ -111,14 +107,10 @@ public class MyGame extends Game  {
     @Override
 
     public void mouseExited(MouseEvent me) {}
-
-
-
-
-/*Hee hee
-I like poopouing
-hoo hoo
- */
+    /*
+    * God will perish by my hands
+    *
+    * */
     //Launches the Game
 
     public static void main(String[] args) { new MyGame().start(TITLE, SCREEN_WIDTH,SCREEN_HEIGHT); }
