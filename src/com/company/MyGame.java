@@ -23,10 +23,13 @@ public class MyGame extends Game  {
 
     public ProgressBar progressBar;
 
+    public Monitor monitor;
+
 
 
     public MyGame() {
         progressBar=new ProgressBar(200,30,400,20,100);
+        monitor=new Monitor(300,300,270,180,false);
     }
 
 
@@ -40,7 +43,10 @@ public class MyGame extends Game  {
     public void draw(Graphics pen) {
         pen.setColor(Color.black);
         pen.fillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
-        progressBar.update(pen,-0.1);
+        progressBar.update(pen,monitor);
+        try{
+            monitor.draw(pen);
+        }catch(Exception ignored){}
     }
 
 
@@ -53,7 +59,10 @@ public class MyGame extends Game  {
 
     @Override
 
-    public void keyPressed(KeyEvent ke) {}
+    public void keyPressed(KeyEvent ke) {
+        if(ke.getKeyCode()==KeyEvent.VK_SPACE)
+            monitor.changeStates();
+    }
 
 
 
@@ -71,7 +80,9 @@ public class MyGame extends Game  {
 
     @Override
 
-    public void mousePressed(MouseEvent me) {}
+    public void mousePressed(MouseEvent me) {
+
+    }
 
 
 

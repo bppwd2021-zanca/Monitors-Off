@@ -22,8 +22,11 @@ public class ProgressBar{
             progress+=num;
         if(progress<=0);
             //color=Color.red;
-    }public void update(Graphics pen,double progress){
-        progress(progress);
+    }public void update(Graphics pen,Monitor monitor){
+        if(monitor.getState())
+            progress(0.1);
+        else
+            progress(-0.1);
         draw(pen);
     }
 }
