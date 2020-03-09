@@ -10,7 +10,7 @@ public class Player {
         this.width = width;
         this.height = height;
     }
-    public void draw(Graphics pen){
+    public void draw(Graphics2D pen){
         pen.setColor(Color.GREEN);
         pen.fillRect(x,y,width,height);
     }

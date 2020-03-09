@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 
 public class MyGame extends Game  {
@@ -23,19 +24,20 @@ public class MyGame extends Game  {
 
     public Monitor monitor;
 
-    public BufferedImage desk,guy,guy2;
+    public BufferedImage desk,guy,guy2,bgImage;
 
     private TypingMinigame typeGame;
 
 
-    public MyGame() {
+    public MyGame() throws IOException {
         typeGame = new TypingMinigame();
         progressBar=new ProgressBar(365,30,400,20,100);
         monitor=new Monitor(430,250,270,180,false);
         try{
             desk=ImageIO.read(new File("img/desk.png"));
             guy=ImageIO.read(new File("img/guy.png"));
-            guy2=ImageIO.read(new File("img/guy2.png"));
+            guy2=ImageIO.read(new File("img/guy3.png"));
+            bgImage=ImageIO.read(new File("img/bg.png"));
         }catch(Exception ignored){}
     }
 
@@ -45,10 +47,18 @@ public class MyGame extends Game  {
 
 
 
-    public void draw(Graphics pen) {
+    public void draw(Graphics2D pen) {
         pen.setColor(Color.black);
-        pen.fillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
+        //pen.fillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
+        pen.drawImage(bgImage,0,0,SCREEN_WIDTH,SCREEN_HEIGHT,null);
         pen.drawImage(desk,365,415,400,300,null);
+        if(typeGame.hasFailed()){
+            progressBar.decBar();
+            typeGame.reset();
+        }if(monitor.getState())
+            typeGame.draw(pen);
+        else
+            typeGame.reset();
         try{
             monitor.draw(pen);
         }catch(Exception ignored){}
@@ -99,7 +109,8 @@ public class MyGame extends Game  {
         int frameX=getWindowX();
         int frameY=getWindowY();
         if(mouseX>=frameX+681 && mouseX<=frameX+698 && mouseY>=frameY+431 && mouseY<=frameY+443)
-            monitor.changeStates();
+            if(progressBar.getShowScreen()==0)
+                monitor.changeStates();
     }
 
 
@@ -125,7 +136,7 @@ public class MyGame extends Game  {
     * */
     //Launches the Game
 
-    public static void main(String[] args) { new MyGame().start(TITLE, SCREEN_WIDTH,SCREEN_HEIGHT); }
+    public static void main(String[] args) throws IOException { new MyGame().start(TITLE, SCREEN_WIDTH,SCREEN_HEIGHT); }
 
 
 

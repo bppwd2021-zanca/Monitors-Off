@@ -25,7 +25,5 @@ char
 static
 import
 main
-;
-==
 .equals
 .tostring

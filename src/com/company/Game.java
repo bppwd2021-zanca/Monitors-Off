@@ -1,7 +1,5 @@
 package com.company;
-import java.awt.BorderLayout;
-
-import java.awt.Graphics;
+import java.awt.*;
 
 import java.awt.event.KeyListener;
 
@@ -71,7 +69,7 @@ public abstract class Game implements KeyListener, MouseListener
 
         @Override
 
-        public void paintComponent(Graphics g) { game.draw(g); }
+        public void paintComponent(Graphics g) { game.draw((Graphics2D) g); }
 
     }
 

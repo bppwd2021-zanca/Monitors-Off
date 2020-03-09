@@ -19,7 +19,7 @@ public class Monitor{
         }else{
             on=true;
         }
-    }public void draw(Graphics pen)throws Exception{
+    }public void draw(Graphics2D pen)throws Exception{
         if(on)
             image=ImageIO.read(new File("img/monitor_on.png"));
         else
