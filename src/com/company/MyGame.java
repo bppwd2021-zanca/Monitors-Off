@@ -28,6 +28,8 @@ public class MyGame extends Game  {
 
     private TypingMinigame typeGame;
 
+    private FiveVolt fv;
+
 
     public MyGame() throws IOException {
         typeGame = new TypingMinigame();
@@ -38,11 +40,13 @@ public class MyGame extends Game  {
             guy=ImageIO.read(new File("img/guy.png"));
             guy2=ImageIO.read(new File("img/guy3.png"));
             bgImage=ImageIO.read(new File("img/bg.png"));
+            fv=new FiveVolt(100,100,ImageIO.read(new File("img/fv.png")));
         }catch(Exception ignored){}
     }
 
     public void update() {
-
+        if(monitor.getState() && fv.isScreaming())
+            System.exit(0);
     }
 
 
@@ -66,6 +70,7 @@ public class MyGame extends Game  {
             pen.drawImage(guy,440,230,250,500,null);
         else
             pen.drawImage(guy2,440,230,250,500,null);
+        fv.update(pen);
         progressBar.update(pen,monitor,SCREEN_WIDTH,SCREEN_HEIGHT);
     }
 
@@ -106,6 +111,7 @@ public class MyGame extends Game  {
     public void mousePressed(MouseEvent me) {
         double mouseX= MouseInfo.getPointerInfo().getLocation().getX();
         double mouseY=MouseInfo.getPointerInfo().getLocation().getY();
+        System.out.println(mouseX+" "+mouseY);
         int frameX=getWindowX();
         int frameY=getWindowY();
         if(mouseX>=frameX+681 && mouseX<=frameX+698 && mouseY>=frameY+431 && mouseY<=frameY+443)

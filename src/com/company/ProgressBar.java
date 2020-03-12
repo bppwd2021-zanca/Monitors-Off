@@ -44,7 +44,7 @@ public class ProgressBar{
             //color=Color.red;
     }public void update(Graphics2D pen,Monitor monitor,int width,int height){
         if(monitor.getState())
-            progress(0.05);
+            progress(0.08);
         else
             progress(-0.1);
         draw(pen);
@@ -53,7 +53,8 @@ public class ProgressBar{
         if(progress>=0 && progress<=100){
             ac=AlphaComposite.getInstance(AlphaComposite.SRC_OVER,o);
             pen.setComposite(ac);
-            pen.drawImage(image,170,-240,800,1200,null);
+            if(!monitor.getState())
+                pen.drawImage(image,490,220,70,100,null);
         }
         if(progress<=0 && showScreen<=200){
             showScreen++;

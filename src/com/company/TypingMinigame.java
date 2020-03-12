@@ -19,7 +19,6 @@ public class TypingMinigame {
     private int numOfWords;
     private String filePath = "textFiles/words.txt";
     private BufferedReader reader;
-//    private Scanner scan = new Scanner(System.in);
     public TypingMinigame() throws IOException {
         try {
             reader=new BufferedReader(new FileReader(new File(filePath)));
